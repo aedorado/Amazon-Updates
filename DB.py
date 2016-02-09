@@ -24,9 +24,6 @@ class DB:
 		self.cursor.execute(q, [pid, saleprice, dealprice, ourprice])
 		self.conn.commit()
 
-	def toggle_tracking(self, pid):
-		pass
-
 	def delete(self, pid):
 		q = 'DELETE FROM tracking WHERE id = ' + pid
 		q = 'DELETE FROM price WHERE id = ' + pid

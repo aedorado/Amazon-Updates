@@ -1,9 +1,11 @@
-import urllib2	# to interact with urls
 import os		# to interact with os
 import re 		# to use regular expressions
 import sys
 import sqlite3 as db	#for database
+import argparse
 
 from DB import *
+from URL import *
+from Product import *
 
 # sys.stdout = open('logs/log_file', 'w')
