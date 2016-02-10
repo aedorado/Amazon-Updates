@@ -1,6 +1,5 @@
 from all_imports import *
 
-
 class Product:
 
     def __init__(self, pid):
@@ -11,8 +10,12 @@ class Product:
         self.pname = getProductNameFromId(pid)
 
     def getProductNameFromId(self):
-        url = URL('http://www.amazon.ca/gp/product/' + self.pid + '/')
+        url = URL('http://www.amazon.in/gp/product/' + self.pid + '/')
         html = url.fetch()
+
+        if html == -1:
+        	sys.exit('~\n~\n~\n~\nUNABLE TO FETCH URL')
+
         preg_name = re.compile(
             '<span id="productTitle" class="a-size-large">(.*)?<\/span>')
         pname = preg_name.findall(html)
@@ -37,4 +40,4 @@ class Product:
 	        print 'Product Name : ' + self.pname
 	        print 'Starting to track.'
 	        db.insert_tracking_table(pid=self.pid, name=self.pname)
-	        print 'Product added successfully.'
+	        print 'Product added successfully.\n'

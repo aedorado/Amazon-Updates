@@ -29,15 +29,5 @@ elif args.purl:
     product = Product(args.purl)
     product.startTracking()
 elif args.wurl:
-    pass
-
-# product = Product(args.purl)
-# if not product.isTracked():
-# 	print 'Untracked Product.\nFetching Details.'
-# 	product.getProductNameFromId()
-# 	print 'Product Name : ' + product.pname
-# 	print 'Starting to track.'
-# 	product.startTracking()
-# 	print 'Product added successfully.'
-# else:
-# 	print 'Already Tracking.'
+    wl = Wishlist(args.wurl)
+    wl.trackAllinWL()
