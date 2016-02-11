@@ -26,8 +26,13 @@ class DB:
         self.cursor.execute(q, [pid, saleprice, dealprice, ourprice, bookprice])
         self.conn.commit()
 
+    def lastPriceEntries(self, n):
+        q = 'SELECT * FROM price JOIN tracking ON price.productId=tracking.id ORDER BY price.addedOn DESC LIMIT ?'
+        self.cursor.execute(q, [n])
+        return self.cursor.fetchall()
+
     def delete(self, pid):
         q = 'DELETE FROM tracking WHERE id = ' + pid
         q = 'DELETE FROM price WHERE id = ' + pid
 
-    
+

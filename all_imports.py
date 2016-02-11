@@ -11,5 +11,6 @@ from DB import *
 from URL import *
 from Product import *
 from Wishlist import *
+from Mail import *
 
 # sys.stdout = open('logs/log_file', 'w')

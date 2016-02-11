@@ -29,8 +29,14 @@ def buildDetailsList():
 def mailLastEntries(n):
 	db = DB()
 	updates = db.lastPriceEntries(n)
-	print updates
-
+	mail = Mail()
+	for upd in updates:
+		sub = '<a href="http://www.amazon.in/gp/product/' + upd[0] + '" traget="_blank">' + upd[7] + '</a><br>'
+		sub = sub + ('Rs. ' + str(upd[1]) + ', Rs. ' + str(upd[2]) + ', Rs. ' + str(upd[3])) + '<br>'
+		sub = sub + ('Bookprice : ' + upd[4]) + '<br>'
+		sub = sub + ('Updated @ ' + upd[5]) + '<br><br>'
+	mail.setSub(sub)
+	mail.send()
 
 pidlist = buildpidList()
 buildDetailsList()
