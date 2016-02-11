@@ -1,9 +1,7 @@
 import smtplib
+from Config import *
 
 class Mail:
-
-	username = ''
-	password = ''
 
 	def __init__(self):
 		pass
@@ -14,16 +12,20 @@ class Mail:
 	def setSub(self, sub):
 		self.sub = sub
 
+	def setMsg(self, msg):
+		self.msg = msg
+
 	def send(self):
+		print self.msg
 		server = smtplib.SMTP('smtp.gmail.com', 587)
 		server.ehlo()
 		server.starttls()
 		server.ehlo()
-		server.login("@gmail.com", "")
-		msg = "This is awesome baby!"
-		server.sendmail("@gmail.com", "a@a", msg)
+		server.login(Config.mailuser, Config.mailpass)
+		server.sendmail(Config.mailuser, Config.mailto, self.msg)
 		server.quit()
 		pass
 
-# server.login("YOUR EMAIL ADDRESS", "YOUR PASSWORD")
-# server.sendmail("YOUR EMAIL ADDRESS", "THE EMAIL ADDRESS TO SEND TO", msg)
+# m = Mail()
+# m.setMsg('hello how are you?')
+# m.send()
