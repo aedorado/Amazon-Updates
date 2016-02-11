@@ -15,8 +15,8 @@ from all_imports import *
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-p', '--purl', type=str, help='Add said id to database')
-parser.add_argument('-w', '--wurl', type=str,
-                    help='Add all items from wishlist to database.')
+parser.add_argument('-w', '--wurl', type=str, help='Add all items from wishlist to database.')
+parser.add_argument('-s', '--show', type=str, help='Show all entries in db.')
 
 args = parser.parse_args()
 

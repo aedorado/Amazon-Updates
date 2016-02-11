@@ -14,10 +14,10 @@ price_create = 'CREATE TABLE price (\
 			saleprice DECIMAL(9, 2), \
 			dealprice DECIMAL(9, 2), \
 			ourprice  DECIMAL(9, 2), \
+			bookprice VARCHAR(128), \
 			addedOn TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, \
 			PRIMARY KEY(productId, addedOn) \
 			)'
 
 # db.query(tracking_create)
 # db.query(price_create)
-# db.insert_tracking_table(idd='1234A67890', name='Yovan')

@@ -23,6 +23,39 @@ class Product:
         re.sub(r"<.*?>", "", pname)
         self.pname = pname
 
+    def updatePrice(self):
+    	url = URL('http://www.amazon.in/gp/product/' + self.pid)
+    	html = url.fetch()
+
+    	preg_price = re.compile('<span id="priceblock_(.*)?<\/span>')
+    	priceSpans = preg_price.findall(html)
+
+    	priceDict = {'saleprice': 0, 'dealprice': 0, 'ourprice': 0, 'bookprice': 0}
+
+    	ebook = True
+    	for span in priceSpans:
+    		priceType = span[:span.find('"')]
+    		price = span[span.rfind('>') + 1:].replace(',', '').strip()
+    		priceDict[priceType] = float(price)
+    		ebook = False
+
+    	print self.pid, priceDict
+
+    	# special case for ebooks when all the above price are 0
+    	bookprice = ''
+    	if ebook:
+	    	rebooks = 'currencyINR">&nbsp;&nbsp;<\/span>[ ]+[\d,]+\.[\d]+<\/span>'
+	    	preg_name = re.compile(rebooks)
+	    	pricespans = preg_name.findall(html)
+	    	bookprice = []
+	    	for span in pricespans:
+	    		bookprice.append(re.findall('\d+', span)[0])
+	    	priceDict['bookprice'] = ','.join(bookprice)
+
+    	db = DB()
+    	db.insert_price_table(pid=self.pid, saleprice=priceDict['saleprice'], dealprice=priceDict['dealprice'], ourprice=priceDict['ourprice'], bookprice=priceDict['bookprice'])
+
+
     def isTracked(self):
     	db = DB()
         db.cursor.execute(

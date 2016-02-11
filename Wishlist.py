@@ -13,7 +13,6 @@ class UtilFetchProduct(Thread):
 
 class UtilWLPageFetch(Thread):
 
-
     def __init__(self, url, tid):
         Thread.__init__(self)
         self.url = url
@@ -70,5 +69,3 @@ class Wishlist:
 # wl = Wishlist('http://www.amazon.ca/gp/registry/wishlist/N7YMAZYY4KDN/ref=cm_wl_sortbar_v_page_2?ie=UTF8&page=2')
 # wl = Wishlist('https://www.amazon.com/gp/registry/wishlist/EKV4MG2FDII1/ref=cm_wl_sortbar_v_page_2?ie=UTF8&page=2')
 # wl.trackAllinWL()
-
-

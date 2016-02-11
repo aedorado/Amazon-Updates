@@ -21,11 +21,13 @@ class DB:
         self.cursor.execute(q, [pid, name])
         self.conn.commit()
 
-    def insert_price_table(self, pid='', saleprice=0, dealprice=0, ourprice=0):
-        q = 'INSERT INTO price (productId, saleprice, dealprice, ourprice) VALUES (?, ?, ?, ?)'
-        self.cursor.execute(q, [pid, saleprice, dealprice, ourprice])
+    def insert_price_table(self, pid='', saleprice=0, dealprice=0, ourprice=0, bookprice=''):
+        q = 'INSERT INTO price (productId, saleprice, dealprice, ourprice, bookprice) VALUES (?, ?, ?, ?, ?)'
+        self.cursor.execute(q, [pid, saleprice, dealprice, ourprice, bookprice])
         self.conn.commit()
 
     def delete(self, pid):
         q = 'DELETE FROM tracking WHERE id = ' + pid
         q = 'DELETE FROM price WHERE id = ' + pid
+
+    
