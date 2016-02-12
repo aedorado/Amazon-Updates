@@ -1,8 +1,6 @@
 from all_imports import *
 
 # DB class
-
-
 class DB:
 
     def __init__(self):
@@ -36,5 +34,3 @@ class DB:
     def delete(self, pid):
         q = 'DELETE FROM tracking WHERE id = ' + pid
         q = 'DELETE FROM price WHERE id = ' + pid
-
-

@@ -1,7 +1,14 @@
 import smtplib
 from Config import *
 
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
 class Mail:
+
+	msg = MIMEMultipart('alternative')
+	msg['From'] = Config.mailuser
+	msg['To'] = Config.mailto
 
 	def __init__(self):
 		pass
@@ -10,19 +17,19 @@ class Mail:
 		self.to = to
 
 	def setSub(self, sub):
-		self.sub = sub
+		self.msg['Subject'] = sub
 
-	def setMsg(self, msg):
-		self.msg = msg
+	def setMsg(self, html):
+		html = MIMEText(html, 'html')
+		self.msg.attach(html)
 
 	def send(self):
-		print self.msg
 		server = smtplib.SMTP('smtp.gmail.com', 587)
 		server.ehlo()
 		server.starttls()
 		server.ehlo()
 		server.login(Config.mailuser, Config.mailpass)
-		server.sendmail(Config.mailuser, Config.mailto, self.msg)
+		server.sendmail(Config.mailuser, Config.mailto, self.msg.as_string())
 		server.quit()
 		pass
 

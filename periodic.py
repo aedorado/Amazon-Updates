@@ -13,7 +13,7 @@ class UtilPeriodicPrice(Thread):
 
 def buildpidList():
 	db = DB()
-	db.cursor.execute('SELECT id FROM TRACKING')
+	db.cursor.execute('SELECT id FROM tracking')
 	pidlist = db.cursor.fetchall()
 	return pidlist
 
@@ -23,19 +23,21 @@ def buildDetailsList():
 		t = UtilPeriodicPrice(Product(pid[0]))
 		t.start()
 	t.join()
-	time.sleep(2)
+	time.sleep(4)
 
 
 def mailLastEntries(n):
 	db = DB()
 	updates = db.lastPriceEntries(n)
 	mail = Mail()
+	mail.setSub('Amazon Updates')
+	msg = ''
 	for upd in updates:
-		sub = '<a href="http://www.amazon.in/gp/product/' + upd[0] + '" traget="_blank">' + upd[7] + '</a><br>'
-		sub = sub + ('Rs. ' + str(upd[1]) + ', Rs. ' + str(upd[2]) + ', Rs. ' + str(upd[3])) + '<br>'
-		sub = sub + ('Bookprice : ' + upd[4]) + '<br>'
-		sub = sub + ('Updated @ ' + upd[5]) + '<br><br>'
-	mail.setSub(sub)
+		msg = msg + '<a href="http://www.amazon.in/gp/product/' + upd[0] + '" traget="_blank">' + upd[7] + '</a><br>'
+		msg = msg + ('Rs. ' + str(upd[1]) + ', Rs. ' + str(upd[2]) + ', Rs. ' + str(upd[3])) + '<br>'
+		msg = msg + ('Bookprice : ' + upd[4]) + '<br>'
+		msg = msg + ('Updated @ ' + upd[5]) + '<br><br>'
+	mail.setMsg(msg)
 	mail.send()
 
 pidlist = buildpidList()
