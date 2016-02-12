@@ -1,0 +1,8 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+INSERT INTO "tracking" VALUES('0553210351','The Death of Ivan Ilyich (Bantam Classics)','2016-02-12 05:28:33');
+INSERT INTO "tracking" VALUES('8173715270','Structure and Interpretation of Computer Programs','2016-02-12 05:28:33');
+INSERT INTO "tracking" VALUES('B013FVLRJ8','Speed - X 3 In 1 Pack Super Traveler Cleaning Kit For Lcd Laptop Screen Cleaning Kit','2016-02-12 05:28:33');
+INSERT INTO "tracking" VALUES('B00KDRQ2RU','Kindle - 6&quot; Glare-Free Touchscreen Display, Wi-Fi (Black)','2016-02-12 05:28:33');
+INSERT INTO "tracking" VALUES('813178696X','The Clean Coder','2016-02-12 05:28:33');
+COMMIT;

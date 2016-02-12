@@ -10,8 +10,10 @@ class DB:
         self.cursor = self.conn.cursor()
         pass
 
-    def all(self, table):
-        self.cursor.execute('SELECT * FROM ' + table)
+    def all(self, table=''):
+        q = 'SELECT * FROM ' + table
+        self.cursor.execute(q)
+        return self.cursor.fetchall()
 
     def query(self, q):
         self.cursor.execute(q)
