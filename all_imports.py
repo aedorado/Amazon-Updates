@@ -5,7 +5,6 @@ import sqlite3 as db  # for database
 import argparse
 from threading import Thread
 
-
 from bs4 import BeautifulSoup
 from DB import *
 from URL import *

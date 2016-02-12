@@ -1,16 +1,3 @@
-# import argparse
-
-# class StartTracking(argparse.Action):
-# 	def __call__(self, parser, namespace, values, option_string=None):
-# 	    print('%r %r %r' % (namespace, values, option_string))
-# 	    setattr(namespace, self.dest, values)
-
-# parser = argparse.ArgumentParser()
-# parser.add_argument('--foo', action=StartTracking)
-# parser.add_argument('bar', action=StartTracking)
-# args = parser.parse_args('--foo 2'.split())
-# print args
-
 from all_imports import *
 
 parser = argparse.ArgumentParser()
