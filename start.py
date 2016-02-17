@@ -2,12 +2,20 @@ from all_imports import *
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-p', '--purl', type=str, help='Add said id to database')
-parser.add_argument('-w', '--wurl', type=str, help='Add all items from wishlist to database.')
-parser.add_argument('-s', '--show', help='Show all entries in db.', action='store_true')
+parser.add_argument(
+    '-w',
+     '--wurl',
+     type=str,
+     help='Add all items from wishlist to database.')
+parser.add_argument(
+    '-s',
+     '--show',
+     help='Show all entries in db.',
+     action='store_true')
 
 args = parser.parse_args()
 
-if not ((args.purl == None) ^ (args.wurl == None)):
+if not ((args.purl is None) ^ (args.wurl is None)):
     print 'Please input only product url or wishlist url.'
 elif args.purl:
     # args.purl = args.purl[:args.purl.rfind('/')]      # uncommet if entering url of product

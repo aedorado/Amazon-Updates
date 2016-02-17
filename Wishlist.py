@@ -1,6 +1,7 @@
 from all_imports import *
 import time
 
+
 class UtilFetchProduct(Thread):
 
     def __init__(self, prod):
@@ -10,6 +11,7 @@ class UtilFetchProduct(Thread):
     def run(self):
         self.prod.startTracking()
         pass
+
 
 class UtilWLPageFetch(Thread):
 
@@ -23,7 +25,7 @@ class UtilWLPageFetch(Thread):
         print 'Thread ' + str(self.tid) + ' started.'
         html = self.url.fetch()
         soup = BeautifulSoup(html, 'html.parser')
-        prods = soup.findAll('a',  {'id': re.compile('itemName_')})
+        prods = soup.findAll('a', {'id': re.compile('itemName_')})
         for prod in prods:
             href = prod['href'][1:]
             pr = Product(href[(href.find('/') + 1):(href.rfind('?'))])
@@ -32,7 +34,7 @@ class UtilWLPageFetch(Thread):
                 productList.append(pr)
             else:
                 print 'Already tracked : ' + pr.pid
-        
+
         print 'Thread ' + str(self.tid) + ' has finished building product list.'
         print 'Thread ' + str(self.tid) + ' has found ' + str(len(productList)) + ' products.'
 
@@ -43,9 +45,11 @@ class UtilWLPageFetch(Thread):
         print 'Thread ' + str(self.tid) + ' has tracked required products.'
         print 'Thread ' + str(self.tid) + ' finished.'
 
+
 class Wishlist:
-    
+
     # Wishlist Class Content
+
     def __init__(self, url):
         self.url = URL(url)
         self.numpages = self.scrapeNumPages()
