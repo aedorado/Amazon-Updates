@@ -44,8 +44,6 @@ class Product:
             priceDict[priceType] = float(price)
             ebook = False
 
-        print self.pid, priceDict
-
         # special case for ebooks when all the above price are 0
         bookprice = ''
         if ebook:
@@ -56,6 +54,8 @@ class Product:
             for span in pricespans:
                 bookprice.append(re.findall('\d+', span)[0])
             priceDict['bookprice'] = ','.join(bookprice)
+
+        print self.pid, priceDict
 
         db = DB()
         db.insert_price_table(
